@@ -1,5 +1,5 @@
 krayon
-------
+======
 
 A simple raytracer. First written in 2003 as an experiment in ray tracing,
 lighting, shading, and texture mapping.
