@@ -97,8 +97,8 @@ public:
     }
 
     void normalize() {
-	    double m = magnitude();
-	    x /= m;
+        double m = magnitude();
+        x /= m;
         y /= m;
         z /= m;
     }
@@ -109,9 +109,9 @@ public:
 
     Vector crossProduct(Vector v) {
         Vector result;
-	    result.x = (y * v.z) - (z * v.y);
-	    result.y = (z * v.x) - (x * v.z);
-	    result.z = (x * v.y) - (y * v.x);
+        result.x = (y * v.z) - (z * v.y);
+        result.y = (z * v.x) - (x * v.z);
+        result.z = (x * v.y) - (y * v.x);
         return result;
     }
 };

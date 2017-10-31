@@ -5,8 +5,7 @@
 #include <iostream>
 #include <vector>
 
-double
-Plane::getDistanceFromPoint(Point point, Vector rayDirection) {
+double Plane::getDistanceFromPoint(Point point, Vector rayDirection) {
 
     double vd = this->a * rayDirection.x
         + this->b * rayDirection.y
@@ -30,14 +29,12 @@ Plane::getDistanceFromPoint(Point point, Vector rayDirection) {
     return dist;
 }
 
-Vector
-Plane::getNormal(Point point, Vector incidentRay, double distanceFromPoint) {
+Vector Plane::getNormal(Point point, Vector incidentRay, double distanceFromPoint) {
     Vector normal(this->a, this->b, this->c);
     return normal;
 }
 
-Color
-Plane::getDiffuseTextureColorAtPoint(Point point) {
+Color Plane::getDiffuseTextureColorAtPoint(Point point) {
 
     int x, y;
 

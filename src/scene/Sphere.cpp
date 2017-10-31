@@ -5,8 +5,7 @@
 #include <iostream>
 #include <vector>
 
-double
-Sphere::getDistanceFromPoint(Point point, Vector rayDirection) {
+double Sphere::getDistanceFromPoint(Point point, Vector rayDirection) {
 
     Vector cameraToSphere(center.x - point.x,
         center.y - point.y,
@@ -29,8 +28,7 @@ Sphere::getDistanceFromPoint(Point point, Vector rayDirection) {
     return closestApproach - sqrt(halfCordSquared);
 }
 
-Vector
-Sphere::getNormal(Point point, Vector incidentRay, double distanceFromPoint) {
+Vector Sphere::getNormal(Point point, Vector incidentRay, double distanceFromPoint) {
 
     Point intersect(point.x + incidentRay.x * distanceFromPoint,
         point.y + incidentRay.y * distanceFromPoint,
@@ -43,8 +41,7 @@ Sphere::getNormal(Point point, Vector incidentRay, double distanceFromPoint) {
     return normal;
 }
 
-Color
-Sphere::getDiffuseTextureColorAtPoint(Point point) {
+Color Sphere::getDiffuseTextureColorAtPoint(Point point) {
 
     double u;
     double v = acos((point.y - center.y) / radius) / PI;

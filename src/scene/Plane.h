@@ -13,12 +13,13 @@ public:
     double getDistanceFromPoint(Point origin, Vector rayDirection);
 
     Color getColorAtPoint(std::vector<Light> & lights,
-        std::vector<Object *> & objects,
-        Color ambience, Point point,
-        Vector incidentRay, double distanceFromPoint);
+                          std::vector<Object *> & objects,
+                          Color ambience,
+                          Point point,
+                          Vector incidentRay,
+                          double distanceFromPoint);
 
-    Vector getReflectedRayAtPoint(Point point, Vector incidentRay,
-        double distanceFromPoint);
+    Vector getReflectedRayAtPoint(Point point, Vector incidentRay, double distanceFromPoint);
 
     Point p1;
     Point p2;
@@ -29,8 +30,7 @@ public:
 
 protected:
 
-    Vector getNormal(Point point, Vector incidentRay,
-        double distanceFromPoint);
+    Vector getNormal(Point point, Vector incidentRay, double distanceFromPoint);
 
     Color getDiffuseTextureColorAtPoint(Point point);
 };

@@ -10,8 +10,7 @@ void debug(Vector v) {
     std::cout << v.x << ", " << v.y << ", " << v.z << std::endl;
 }
 
-std::vector<std::vector<Color> >
-Scene::trace(int width, int height) {
+std::vector<std::vector<Color> > Scene::trace(int width, int height) {
 
     std::vector<std::vector<Color> > result;
     camera.initBasis();
@@ -56,9 +55,7 @@ Scene::trace(int width, int height) {
     return result;
 }
 
-Vector
-Scene::getViewRay(double x, double y, int height,
-                  double z, double xR, double yR, double zR) {
+Vector Scene::getViewRay(double x, double y, int height, double z, double xR, double yR, double zR) {
 
     Point p;
     p.x = (x * camera.xBasis.x) + (y * camera.yBasis.x) + xR;
@@ -73,8 +70,7 @@ Scene::getViewRay(double x, double y, int height,
     return rayDirection;
 }
 
-Color
-Scene::traceRay(Point point, Vector rayDirection, int reflectionDepth) {
+Color Scene::traceRay(Point point, Vector rayDirection, int reflectionDepth) {
 
     // Trace through this ray and get the closest object
     Object *closestObject = NULL;
@@ -117,9 +113,11 @@ Scene::traceRay(Point point, Vector rayDirection, int reflectionDepth) {
     }
 }
 
-Color
-Scene::traceReflectedRay(Object *obj, double distanceFromPoint, Point point,
-                         Vector rayDirection, int reflectionDepth) {
+Color Scene::traceReflectedRay(Object *obj,
+                               double distanceFromPoint,
+                               Point point,
+                               Vector rayDirection,
+                               int reflectionDepth) {
 
     Vector reflectedRay = obj->getReflectedRayAtPoint(point, rayDirection, distanceFromPoint);
 
@@ -130,9 +128,15 @@ Scene::traceReflectedRay(Object *obj, double distanceFromPoint, Point point,
     return traceRay(intersect, reflectedRay, reflectionDepth+1);
 }
 
-Color
-Scene::adaptiveSample(double x, double y, int height, double z, double xR, double yR,
-                      double zR, Point point, double pixelScale) {
+Color Scene::adaptiveSample(double x,
+                            double y,
+                            int height,
+                            double z,
+                            double xR,
+                            double yR,
+                            double zR,
+                            Point point,
+                            double pixelScale) {
 
     Vector rayDirection;
     std::vector<Color> colors;
@@ -158,19 +162,51 @@ Scene::adaptiveSample(double x, double y, int height, double z, double xR, doubl
     }
 
     if (averageColor.difference(c1) > colorDifferentialEpsilon) {
-        c1 = adaptiveSample(x + (pixelScale/4.0), y + (pixelScale/4.0), height, z, xR, yR, zR, camera.position, pixelScale/2.0);
+      c1 = adaptiveSample(x + (pixelScale/4.0),
+                          y + (pixelScale/4.0),
+                          height,
+                          z,
+                          xR,
+                          yR,
+                          zR,
+                          camera.position,
+                          pixelScale/2.0);
     }
     
     if (averageColor.difference(c2) > colorDifferentialEpsilon) {
-        c2 = adaptiveSample(x + (pixelScale/4.0), y - (pixelScale/4.0), height, z, xR, yR, zR, camera.position, pixelScale/2.0);
+      c2 = adaptiveSample(x + (pixelScale/4.0),
+                          y - (pixelScale/4.0),
+                          height,
+                          z,
+                          xR,
+                          yR,
+                          zR,
+                          camera.position,
+                          pixelScale/2.0);
     }
     
     if (averageColor.difference(c3) > colorDifferentialEpsilon) {
-        c3 = adaptiveSample(x - (pixelScale/4.0), y + (pixelScale/4.0), height, z, xR, yR, zR, camera.position, pixelScale/2.0);
+      c3 = adaptiveSample(x - (pixelScale/4.0),
+                          y + (pixelScale/4.0),
+                          height,
+                          z,
+                          xR,
+                          yR,
+                          zR,
+                          camera.position,
+                          pixelScale/2.0);
     }
     
     if (averageColor.difference(c4) > colorDifferentialEpsilon) {
-        c4 = adaptiveSample(x - (pixelScale/4.0), y - (pixelScale/4.0), height, z, xR, yR, zR, camera.position, pixelScale/2.0);
+      c4 = adaptiveSample(x - (pixelScale/4.0),
+                          y - (pixelScale/4.0),
+                          height,
+                          z,
+                          xR,
+                          yR,
+                          zR,
+                          camera.position,
+                          pixelScale/2.0);
     }
 
     return Color::averageColor(colors);

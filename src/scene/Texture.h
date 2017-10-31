@@ -55,8 +55,6 @@ public:
 
     bool isLoaded;
 
-// establish private members as abstraction for various
-// possible image formats
 private:
 
     Color *imageData;

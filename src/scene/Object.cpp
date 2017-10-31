@@ -2,13 +2,12 @@
 #include "Object.h"
 #include "Primitives.h"
 
-Color
-Object::getColorAtPoint(std::vector<Light> & lights,
-                        std::vector<Object *> & objects,
-                        Color ambience,
-                        Point point,
-                        Vector incidentRay,
-                        double distanceFromPoint) {
+Color Object::getColorAtPoint(std::vector<Light> & lights,
+                              std::vector<Object *> & objects,
+                              Color ambience,
+                              Point point,
+                              Vector incidentRay,
+                              double distanceFromPoint) {
 
     Point intersect(point.x + incidentRay.x * distanceFromPoint,
         point.y + incidentRay.y * distanceFromPoint,
@@ -37,10 +36,7 @@ Object::getColorAtPoint(std::vector<Light> & lights,
     return result;
 }
 
-Vector
-Object::getReflectedRayAtPoint(Point point,
-                               Vector incidentRay,
-                               double distanceFromPoint) {
+Vector Object::getReflectedRayAtPoint(Point point, Vector incidentRay, double distanceFromPoint) {
 
     Point intersect(point.x + incidentRay.x * distanceFromPoint,
         point.y + incidentRay.y * distanceFromPoint,
@@ -58,11 +54,10 @@ Object::getReflectedRayAtPoint(Point point,
     return reflectedRay;
 }
 
-Color
-Object::getDiffuseColorAtPoint(std::vector<Light> & lights,
-                               std::vector<Object *> & objects,
-                               Point point,
-                               Vector normal) {
+Color Object::getDiffuseColorAtPoint(std::vector<Light> & lights,
+                                     std::vector<Object *> & objects,
+                                     Point point,
+                                     Vector normal) {
 
     Color lightingCoeff(0, 0, 0);
 
@@ -103,12 +98,11 @@ Object::getDiffuseColorAtPoint(std::vector<Light> & lights,
     return result;
 }
 
-Color
-Object::getSpecularColorAtPoint(std::vector<Light> & lights,
-                                std::vector<Object *> & objects,
-                                Point point,
-                                Vector incidentRay,
-                                Vector normal) {
+Color Object::getSpecularColorAtPoint(std::vector<Light> & lights,
+                                      std::vector<Object *> & objects,
+                                      Point point,
+                                      Vector incidentRay,
+                                      Vector normal) {
 
     Color lightingCoeff(0, 0, 0);
 
@@ -149,10 +143,7 @@ Object::getSpecularColorAtPoint(std::vector<Light> & lights,
     return result;
 }
 
-bool
-Object::pointIsInShadow(std::vector<Object *> & objects,
-                        Point point,
-                        Vector lightDirection) {
+bool Object::pointIsInShadow(std::vector<Object *> & objects, Point point, Vector lightDirection) {
 
     double distanceToLight = lightDirection.magnitude();
     lightDirection.normalize();

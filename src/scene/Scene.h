@@ -36,16 +36,31 @@ public:
 
 private:
 
-    Vector getViewRay(double x, double y, int height,
-        double z, double xR, double yR, double zR);
+    Vector getViewRay(double x,
+                      double y,
+                      int height,
+                      double z,
+                      double xR,
+                      double yR,
+                      double zR);
 
     Color traceRay(Point point, Vector rayDirection, int reflectionDepth);
 
-    Color traceReflectedRay(Object *obj, double distanceFromPoint,
-        Point point, Vector rayDirection, int reflectionDepth);
+    Color traceReflectedRay(Object *obj,
+                            double distanceFromPoint,
+                            Point point,
+                            Vector rayDirection,
+                            int reflectionDepth);
 
-    Color adaptiveSample(double x, double y, int height, double z, double xR,
-        double yR, double zR, Point point, double pixelScale);
+    Color adaptiveSample(double x,
+                         double y,
+                         int height,
+                         double z,
+                         double xR,
+                         double yR,
+                         double zR,
+                         Point point,
+                         double pixelScale);
 };
 
 #endif

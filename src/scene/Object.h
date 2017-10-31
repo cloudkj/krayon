@@ -58,15 +58,13 @@ public:
     virtual double getDistanceFromPoint(Point origin, Vector rayDirection) = 0;
 
     Color getColorAtPoint(std::vector<Light> & lights,
-        std::vector<Object *> & objects,
-        Color ambience,
-        Point point,
-        Vector incidentRay,
-        double distanceFromPoint);
+                          std::vector<Object *> & objects,
+                          Color ambience,
+                          Point point,
+                          Vector incidentRay,
+                          double distanceFromPoint);
 
-    Vector getReflectedRayAtPoint(Point point,
-        Vector incidentRay,
-        double distanceFromPoint);
+    Vector getReflectedRayAtPoint(Point point, Vector incidentRay, double distanceFromPoint);
 
     Color ambient;
     Color diffuse;
@@ -80,18 +78,19 @@ public:
 protected:
 
     Color getDiffuseColorAtPoint(std::vector<Light> & lights,
-        std::vector<Object *> & objects, Point point, Vector normal);
+                                 std::vector<Object *> & objects,
+                                 Point point,
+                                 Vector normal);
 
     Color getSpecularColorAtPoint(std::vector<Light> & lights,
-        std::vector<Object *> & objects, Point point,
-        Vector incidentRay, Vector normal);
+                                  std::vector<Object *> & objects,
+                                  Point point,
+                                  Vector incidentRay,
+                                  Vector normal);
 
-    bool pointIsInShadow(std::vector<Object *> & objects,
-        Point point, Vector lightDirection);
+    bool pointIsInShadow(std::vector<Object *> & objects, Point point, Vector lightDirection);
 
-    virtual Vector getNormal(Point point,
-        Vector incidentRay,
-        double distanceFromPoint) = 0;
+    virtual Vector getNormal(Point point, Vector incidentRay, double distanceFromPoint) = 0;
 
     virtual Color getDiffuseTextureColorAtPoint(Point point) = 0;
 };

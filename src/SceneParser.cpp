@@ -19,8 +19,7 @@ SceneParser::~SceneParser() {
     delete xmlReader;
 }
 
-void
-SceneParser::createScene() {
+void SceneParser::createScene() {
     while (xmlReader->read()) {
 
         if (xmlReader->getNodeType() == irr::io::EXN_ELEMENT) {
@@ -36,8 +35,7 @@ SceneParser::createScene() {
     }
 }
 
-void
-SceneParser::parseScene() {
+void SceneParser::parseScene() {
     scene.maxReflectionDepth = xmlReader->getAttributeValueAsInt("maxReflectionDepth");
 
     // anti-aliasing attributes
@@ -46,8 +44,7 @@ SceneParser::parseScene() {
     scene.colorDifferentialEpsilon = xmlReader->getAttributeValueAsFloat("colorDifferentialEpsilon");
 }
 
-void
-SceneParser::parseCamera() {
+void SceneParser::parseCamera() {
     scene.camera.fieldOfView = xmlReader->getAttributeValueAsFloat("fieldOfView");
 
     traverseToNode("Position");
@@ -60,18 +57,15 @@ SceneParser::parseCamera() {
     setVectorValues(scene.camera.up);
 }
 
-void
-SceneParser::parseBackground() {
+void SceneParser::parseBackground() {
     setColorValues(scene.background);
 }
 
-void
-SceneParser::parseAmbience() {
+void SceneParser::parseAmbience() {
     setColorValues(scene.ambience);
 }
 
-void
-SceneParser::parseLight() {
+void SceneParser::parseLight() {
     Light light;
 
     traverseToNode("Position");
@@ -144,8 +138,8 @@ void SceneParser::parsePlane() {
 
 void SceneParser::traverseToNode(std::string nodeName) {
     while (xmlReader->getNodeType() != irr::io::EXN_ELEMENT ||
-        nodeName.compare(xmlReader->getNodeName()) != 0) {
-            xmlReader->read();
+           nodeName.compare(xmlReader->getNodeName()) != 0) {
+        xmlReader->read();
     }
 }
 

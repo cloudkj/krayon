@@ -8,9 +8,8 @@
 #include "CImg.h"
 
 int main(int argc, char *argv[]) {
-
     if (argc < 5) {
-        std::cout << "usage: krayon sceneFilename width height outputFilename" << std::endl;
+        std::cout << "usage: krayon <scene file> <width> <height> <output file>" << std::endl;
         return -1;
     }
 
@@ -19,7 +18,7 @@ int main(int argc, char *argv[]) {
     int height = atoi(argv[3]);
     std::string outputFilename(argv[4]);
 
-    std::cout << "Processing " << sceneFilename << " at " << width << "x" << height << std::endl;
+    std::cout << "Rendering " << sceneFilename << " at " << width << "x" << height << std::endl;
 
     // Parse the scene description file
     SceneParser parser(sceneFilename);
@@ -44,5 +43,6 @@ int main(int argc, char *argv[]) {
     }
     std::cout << "Output: " << outputFilename << std::endl;
     image.save(outputFilename.c_str());
+
     return 0;
 }
