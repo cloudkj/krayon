@@ -18,7 +18,7 @@ public:
 
     ~Texture() {
         if (isLoaded) {
-            delete imageData;
+            delete [] imageData;
         }
     }
 
